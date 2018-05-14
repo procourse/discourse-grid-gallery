@@ -1,10 +1,13 @@
 plugins:
-    tags_displaying_gallery:
-        default: ""
-        client: true
-    desktop_picture_width:
-        default: 200
-        client: true
-    mobile_picture_width:
-        default: 50
-        client: true
+  grid_gallery_enabled:
+    default: true
+    client: true
+  grid_gallery_tags:
+    default: ""
+    client: true
+  grid_gallery_desktop_picture_width:
+    default: 200
+    client: true
+  grid_gallery_mobile_picture_width:
+    default: 50
+    client: true
