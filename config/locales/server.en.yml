@@ -1,7 +1,6 @@
 en:
     site_settings:
+        enable_grid_for_category: "Enable grid view as default for this category"
         tags_displaying_gallery: "What tags should show the grid view gallery?"
         desktop_picture_width: "What is the preferred picture width for desktop?"
         mobile_picture_width: "What is the preferred picture width for mobile?"
-    grid_view:
-        enable_grid_for_category: "Enable grid view as default for this category"
