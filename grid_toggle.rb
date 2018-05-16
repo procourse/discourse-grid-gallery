@@ -1,20 +1,42 @@
 module ::GridViewPlugin
 
+    class GridTarget
+        def initialize(type, id)
+            @type = type
+            @id = id
+        end
+    end
+
     class GridToggle
         def initialize(target, user)
-            # TODO Is this even correct for the usage?
             @target = target
             @user = user
         end
 
-        def set(toggle)
-            # TODO Figure out how to set key
-            # TODO Logic for setting toggle appropriately
-            ::PluginStore.set("grid_view", key, toggle)
+        # takes param toggle (grid or list)
+        def set_preference(toggle)
+            key = set_key()
+            if key != nil
+                ::PluginStore.set("grid_gallery", key, toggle)
+
         end
 
-        def get()
-            # TODO Figure out how to set key
-            status = ::PluginStore.get("grid_view", key)
+        def get_preference()
+            key = set_key()
+
+            if key != nil
+                setting = ::PluginStore.get("grid_gallery", key)
+
+            return setting
+        end
+
+        private
+        def set_key()
+            if @target.type === "category" || @target.type === "tag"
+                key = "grid_gallery_#{@user.id}_#{@target.type}_#{@target.id}"
+            else
+                return nil
+
+            return key
         end
     end
