@@ -7,7 +7,7 @@ module ::GridViewPlugin
         end
     end
 
-    class GridToggle
+    class GridUserToggle
         def initialize(target, user)
             @target = target
             @user = user
@@ -21,7 +21,7 @@ module ::GridViewPlugin
 
         end
 
-        def get_preference()
+        def get_preference
             key = set_key()
 
             if key != nil
@@ -31,7 +31,7 @@ module ::GridViewPlugin
         end
 
         private
-        def set_key()
+        def set_key
             if @target.type === "category" || @target.type === "tag"
                 key = "grid_gallery_#{@user.id}_#{@target.type}_#{@target.id}"
             else
