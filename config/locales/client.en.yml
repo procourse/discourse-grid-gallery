@@ -2,3 +2,7 @@ en:
   js:
     grid_gallery:
       enable_grid_gallery_for_category: "Enable grid view as default for this category"
+      grid_button:
+        title: "Grid"
+      list_button:
+        title: "List"
