@@ -15,15 +15,16 @@ module ::GridViewPlugin
 
         # takes param toggle (grid or list)
         def set_preference(toggle)
-            key = set_key()
+            key = set_key
             if key != nil
                 ::PluginStore.set("grid_gallery", key, toggle)
 
         end
 
         def get_preference
-            key = set_key()
-
+            key = set_key
+            setting = nil
+            
             if key != nil
                 setting = ::PluginStore.get("grid_gallery", key)
 
