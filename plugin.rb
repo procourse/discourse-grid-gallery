@@ -47,18 +47,26 @@ after_initialize do
 
             # Set Default load to Grid
             def load_grid_setting
+                if user_toggle.get_preference === nil
+                    user_toggle.set_preference("grid")
 
+                return user_toggle.get_preference
             end
 
-            def set_grid_setting
-
+            def set_grid_setting(setting)
+                user_toggle.set_preference(setting)
             end
 
             private
-            def type
+            # looking to return type as tag or category
+            def type(classification)
+                if classification != "tag" || classification != "category"
+                    return nil
+                return classification
             end
-
-            def id
+            # returns the id of the tag or category
+            def id(classification-id)
+                return classification-id
             end
 
             def target
