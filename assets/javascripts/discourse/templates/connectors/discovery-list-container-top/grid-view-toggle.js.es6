@@ -2,19 +2,13 @@
 // TODO Function to pass logic to hbs for determining which button to show
 import { ajax } from 'discourse/lib/ajax';
 
-GridViewStatus() {
-    //return true for grid
-
-    //return false for list
-}
-
 export default {
     actions: {
-        gridClick() {
-
-        },
-        listClick() {
-
+        gridToggle() {
+          return ajax("/grid-gallery/toggle", {
+            type: 'PUT',
+            data: { category_id: this.get('category.id'), tag_id: null, user_id: this.currentUser.id }
+          });
         }
     }
 }

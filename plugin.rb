@@ -3,20 +3,33 @@
 # version: 0.0.1
 # authors: ProCourse
 # url: https://github.com/procourse/discourse-grid-gallery
-require_relative("lib/grid_toggle")
 
 enabled_site_setting :grid_gallery_enabled
 
-GridViewPlugin = GridViewPlugin
+load File.expand_path('../lib/grid_gallery/engine.rb', __FILE__)
+
+Discourse::Application.routes.append do
+  mount ::GridGallery::Engine, at: "/grid-gallery"
+end
 
 after_initialize do
+
+    require_dependency 'basic_category_serializer'
+    class ::BasicCategorySerializer
+        attributes :grid_view
+
+        def grid_view
+            Category.grid_default?(object.id)
+        end
+    end
+
     class ::Category
         def self.reset_grid_view_cache
           @grid_view_default_cache["grid_default"] =
             begin
               Set.new(
                 CategoryCustomField
-                  .where(name: "enable_grid_view", value: "false")
+                  .where(name: "enable_grid_view", value: "true")
                   .pluck(:category_id)
               )
             end
@@ -41,41 +54,4 @@ after_initialize do
         end
     end
 
-    module GridViewPlugin
-        class GridViewController < ActionController::Base
-            include CurrentUser
-
-            # Set Default load to Grid
-            def load_grid_setting
-                if user_toggle.get_preference === nil
-                    user_toggle.set_preference("grid")
-
-                return user_toggle.get_preference
-            end
-
-            def set_grid_setting(setting)
-                user_toggle.set_preference(setting)
-            end
-
-            private
-            # looking to return type as tag or category
-            def type(classification)
-                if classification != "tag" || classification != "category"
-                    return nil
-                return classification
-            end
-            # returns the id of the tag or category
-            def id(classification-id)
-                return classification-id
-            end
-
-            def target
-                @_target ||= GridViewPlugin::GridTarget.new(type, id)
-            end
-
-            def user_toggle
-                @_toggle ||= GridViewPlugin::GridUserToggle.new(@_target, current_user)
-            end
-        end
-    end
 end
