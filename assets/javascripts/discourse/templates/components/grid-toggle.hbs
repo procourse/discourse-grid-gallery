@@ -1,0 +1,14 @@
+  {{#if topicGridView}}
+    {{d-button
+          class="btn btn-default btn-icon-text grid-view-toggle"
+          action="gridToggle"
+          title="grid is on"
+          translatedLabel="Grid Off"}}
+  {{else}}
+    {{d-button
+          class="btn btn-default btn-icon-text grid-view-toggle"
+          action="gridToggle"
+          title="Grid On"
+          translatedLabel="Grid On"}}
+
+  {{/if}}

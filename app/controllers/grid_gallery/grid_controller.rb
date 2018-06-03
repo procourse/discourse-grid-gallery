@@ -3,7 +3,8 @@ module GridGallery
     before_action :ensure_logged_in
 
     def toggle_grid_preference
-      byebug
+      puts "hey"
+      return "hi"
     end
 
   end

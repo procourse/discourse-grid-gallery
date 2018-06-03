@@ -6,6 +6,8 @@
 
 enabled_site_setting :grid_gallery_enabled
 
+register_asset 'stylesheets/common/toggle-btn.scss'
+
 load File.expand_path('../lib/grid_gallery/engine.rb', __FILE__)
 
 Discourse::Application.routes.append do
