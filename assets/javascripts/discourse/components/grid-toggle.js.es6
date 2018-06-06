@@ -11,10 +11,10 @@ export default Ember.Component.extend({
         gridToggle() {
           let data_a = ajax("/grid-gallery/toggle", {
             type: 'POST',
-            data: { category_id: this.get('category.id'), tag_id: null, user_id: this.currentUser.id }
+            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id }
+          }).then((result) => {
+            console.log(result);
           });
-
-          console.log(data_a);
 
           if (this.get("topicGridView")) {
             this.set("topicGridView",false);
