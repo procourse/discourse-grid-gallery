@@ -9,18 +9,18 @@ export default Ember.Component.extend({
 
   actions: {
         gridToggle() {
-          let data_a = ajax("/grid-gallery/toggle", {
-            type: 'POST',
-            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id }
-          }).then((result) => {
-            console.log(result);
-          });
-
           if (this.get("topicGridView")) {
             this.set("topicGridView",false);
           }else{
             this.set("topicGridView",true);
           }
+
+          ajax("/grid-gallery/toggle", {
+            type: 'POST',
+            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id, grid_view: this.get("topicGridView") }
+          }).then((result) => {
+            console.log(result);
+          });
         }
     }
 });
