@@ -7,19 +7,26 @@ import { default as computed } from 'ember-addons/ember-computed-decorators';
 export default Ember.Component.extend({
   topicGridView : true,
 
+  didInsertElement() {
+    ajax("/grid-gallery/grid_view", {
+      type: 'POST',
+      data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id }
+    }).then((result) => {
+      this.set("topicGridView",result['grid_view']=='true');
+    });
+  },
+
   actions: {
         gridToggle() {
-          if (this.get("topicGridView")) {
-            this.set("topicGridView",false);
-          }else{
-            this.set("topicGridView",true);
-          }
-
-          ajax("/grid-gallery/toggle", {
+          let GridView = this.get("topicGridView");
+          GridView = !GridView;
+          let aj_d=ajax("/grid-gallery/toggle", {
             type: 'POST',
-            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id, grid_view: this.get("topicGridView") }
+            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id, grid_view: GridView }
           }).then((result) => {
-            console.log(result);
+            if(result['success'] == 'OK'){
+              this.set("topicGridView",GridView);
+            }
           });
         }
     }
