@@ -9,23 +9,34 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     ajax("/grid-gallery/grid_view", {
-      type: 'POST',
+      type: 'GET',
       data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id }
     }).then((result) => {
-      this.set("topicGridView",result['grid_view']=='true');
+      this.set("topicGridView", result['grid_view'] == 'true');
+      if (result['grid_view'] == 'true'){
+        $('body').addClass('display-grid-gallery');
+      }
     });
   },
 
   actions: {
         gridToggle() {
-          let GridView = this.get("topicGridView");
-          GridView = !GridView;
+          let gridView = false;
+          if (this.get("topicGridView")) {
+            gridView = true;
+          }
           let aj_d=ajax("/grid-gallery/toggle", {
             type: 'POST',
-            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id, grid_view: GridView }
+            data: { category_id: this.args.category.id, tag_id: null, user_id: this.currentUser.id, grid_view: !gridView }
           }).then((result) => {
             if(result['success'] == 'OK'){
-              this.set("topicGridView",GridView);
+              this.set("topicGridView", result['grid_view'] == 'true');
+              if (result['grid_view'] == 'true'){
+                $('body').addClass('display-grid-gallery');
+              }
+              else{
+                $('body').removeClass('display-grid-gallery'); 
+              }
             }
           });
         }

@@ -6,7 +6,7 @@
 
 enabled_site_setting :grid_gallery_enabled
 
-register_asset 'stylesheets/common/toggle-btn.scss'
+register_asset 'stylesheets/grid-gallery.scss'
 
 load File.expand_path('../lib/grid_gallery/engine.rb', __FILE__)
 
