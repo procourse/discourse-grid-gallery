@@ -1,7 +1,7 @@
 en:
   js:
     grid_gallery:
-      enable_grid_gallery_for_category: "Enable grid view as default for this category"
+      enable_grid_gallery_for_category: "Enable grid view as default for this category (Enter the tag names seperated with commas)"
       grid_button:
         title: "Grid"
       list_button:
