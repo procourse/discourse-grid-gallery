@@ -9,7 +9,7 @@ function initialize(api) {
       css.type = "text/css";
       css.innerHTML = `.display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_desktop_picture_width} !important;}`;
       document.body.appendChild(css);
-      if (this.get('category') && this.get('category').user_grid_view){
+      if (this.get('category') && this.get('category').grid_view && this.get('category').user_grid_view){
         $('body').addClass('display-grid-gallery');
       }
     }
