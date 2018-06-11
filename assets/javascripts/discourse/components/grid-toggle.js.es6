@@ -18,8 +18,6 @@ export default Ember.Component.extend({
 
   actions: {
         gridToggle() {
-          // $(this).hide();
-          console.log($(this)[0].parentView.parentView);
           let GridView = this.get("topicGridView");
           GridView = !GridView;
           let aj_d=ajax("/grid-gallery/toggle", {
