@@ -18,10 +18,18 @@ after_initialize do
 
     require_dependency 'basic_category_serializer'
     class ::BasicCategorySerializer
-        attributes :grid_view
+        attributes :grid_view, :user_grid_view
 
         def grid_view
             Category.grid_default?(object.id)
+        end
+
+        def user_grid_view
+          if scope && scope.user
+            ::PluginStore.get('grid-gallery-plugin', "grid-gallery-u#{scope.user.id}-c#{object.id}") == "true"
+          else
+            true
+          end
         end
     end
 
