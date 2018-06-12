@@ -7,15 +7,17 @@ import { on } from 'ember-addons/ember-computed-decorators';
 
 export default Ember.Component.extend({
   willDestroyElement(){
-    $('body').removeClass('display-grid-gallery'); 
+    $('body').removeClass('display-grid-gallery');
   },
+
 
   actions: {
         gridToggle() {
           let gridView = false;
-          if (this.parentView.category.get('user_grid_view')) {
+          if (this.parentView.category && this.parentView.category.get('user_grid_view')) {
             gridView = true;
           }
+
           const self = this;
           let aj_d=ajax("/grid-gallery/toggle", {
             type: 'POST',
@@ -27,7 +29,7 @@ export default Ember.Component.extend({
                 $('body').addClass('display-grid-gallery');
               }
               else{
-                $('body').removeClass('display-grid-gallery'); 
+                $('body').removeClass('display-grid-gallery');
               }
             }
           });

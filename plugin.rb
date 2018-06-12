@@ -64,4 +64,18 @@ after_initialize do
         end
     end
 
+    class ::User
+      def user_grid_view
+        ::PluginStore.get('grid-gallery-plugin', "grid-gallery-tags-u#{self.id}")
+      end
+    end
+
+    require_dependency 'current_user_serializer'
+    class ::CurrentUserSerializer
+      attributes :user_grid_view
+
+      def user_grid_view
+        object.user_grid_view
+      end
+    end
 end
