@@ -6,6 +6,9 @@ import { on } from 'ember-addons/ember-computed-decorators';
 
 
 export default Ember.Component.extend({
+  willDestroyElement(){
+    $('body').removeClass('display-grid-gallery'); 
+  },
 
   actions: {
         gridToggle() {
