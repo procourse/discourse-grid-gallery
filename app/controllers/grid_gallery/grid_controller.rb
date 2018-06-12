@@ -20,12 +20,5 @@ module GridGallery
       end
     end
 
-    def get_grid_preference
-      u_id = params[:user_id]
-      cat_id = params[:category_id]
-      data = ::PluginStore.get('grid-gallery-plugin', "grid-gallery-u#{u_id}-c#{cat_id}")
-      render json: success_json.merge(grid_view: data)
-    end
-
   end
 end
