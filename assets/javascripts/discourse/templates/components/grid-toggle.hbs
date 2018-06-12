@@ -4,6 +4,12 @@
           action="gridToggle"
           title="Grid is on"
           translatedLabel="Grid Off"}}
+{{else if tagGridViewEnabled}}
+    {{d-button
+          class="btn btn-default btn-icon-text grid-view-toggle"
+          action="gridToggle"
+          title="Grid is on"
+          translatedLabel="Grid Off"}}
 {{else}}
     {{d-button
           class="btn btn-default btn-icon-text grid-view-toggle"
