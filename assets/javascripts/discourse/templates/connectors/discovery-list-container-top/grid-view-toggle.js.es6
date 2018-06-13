@@ -5,7 +5,6 @@ export default{
       let tag_id = component.container.owner.lookup('controller:tags.show').tag.id;
 
       if (tags.includes(tag_id)){
-        $('body').addClass('display-grid-gallery');
         return true;
       }
       else {

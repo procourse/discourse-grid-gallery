@@ -5,31 +5,33 @@ module GridGallery
     before_action :ensure_logged_in
 
     def toggle_grid_preference
-      grid_view = params[:grid_view]
-      u_id = params[:user_id]
-      t_id = params[:tag_id]
-      cat_id = params[:category_id]
-      data = nil
 
-        ::PluginStore.set('grid-gallery-plugin', "grid-gallery-u#{u_id}-c#{cat_id}", grid_view)
-        unless cat_id.nil? || cat_id.empty?
-        data = ::PluginStore.get('grid-gallery-plugin', "grid-gallery-u#{u_id}-c#{cat_id}")
-      end
-      unless t_id.nil?
-        if grid_view.nil? || grid_view.empty?
-          grid_view = []
+      if params[:category_id]
+        current_category_status = ::PluginStore.get('grid-gallery-plugin', "grid-gallery-u#{params[:user_id]}-c#{params[:category_id]}") || "true"
+        if current_category_status == "true"
+          new_status = "false"
+        else
+          new_status = "true"
         end
-        ::PluginStore.set('grid-gallery-plugin', "grid-gallery-tags-u#{u_id}", grid_view)
-        data = ::PluginStore.get('grid-gallery-plugin', "grid-gallery-tags-u#{u_id}")
-        puts "hey"
-        puts data
-        puts "grid_view"
+        ::PluginStore.set('grid-gallery-plugin', "grid-gallery-u#{params[:user_id]}-c#{params[:category_id]}", new_status)
       end
 
-      if data.nil?
+      if params[:tag_id]
+        tag_exclusions = ::PluginStore.get('grid-gallery-plugin', "grid-gallery-tags-u#{params[:user_id]}") || []
+        if tag_exclusions.include?(params[:tag_id])
+          tag_exclusions.delete(params[:tag_id])
+          new_status = "true"
+        else
+          tag_exclusions.push(params[:tag_id])
+          new_status = "false"
+        end
+        ::PluginStore.set('grid-gallery-plugin', "grid-gallery-tags-u#{params[:user_id]}", tag_exclusions)
+      end
+
+      if new_status.nil?
         render json: {error: "failed"}
       else
-        render json: success_json.merge(grid_view: data)
+        render json: success_json.merge(grid_view: new_status)
       end
     end
 

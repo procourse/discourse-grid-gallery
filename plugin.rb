@@ -65,17 +65,17 @@ after_initialize do
     end
 
     class ::User
-      def user_grid_view
+      def exclude_grid_view_tags
         ::PluginStore.get('grid-gallery-plugin', "grid-gallery-tags-u#{self.id}")
       end
     end
 
     require_dependency 'current_user_serializer'
     class ::CurrentUserSerializer
-      attributes :user_grid_view
+      attributes :exclude_grid_view_tags
 
-      def user_grid_view
-        object.user_grid_view
+      def exclude_grid_view_tags
+        object.exclude_grid_view_tags
       end
     end
 end
