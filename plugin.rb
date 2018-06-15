@@ -26,7 +26,7 @@ after_initialize do
 
         def user_grid_view
           if scope && scope.user
-            ::PluginStore.get('grid-gallery-plugin', "grid-gallery-u#{scope.user.id}-c#{object.id}") == "true" || "true"
+            ::PluginStore.get('grid-gallery-plugin', "grid-gallery-u#{scope.user.id}-c#{object.id}") == "true"
           else
             "true"
           end
