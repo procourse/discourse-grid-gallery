@@ -31,14 +31,12 @@ export default Ember.Component.extend({
         this.set('tagGridViewEnabled', true);
         $('body').addClass('display-grid-gallery');
       }
-
-      //Setting the width and heights of the grid items
-      var css = document.createElement("style");
-      css.type = "text/css";
-      css.innerHTML = `.display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_desktop_picture_width} !important;} .mobile-view .display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_mobile_picture_width} !important;}`;
-      document.body.appendChild(css);
-
     }
+    //Setting the width and heights of the grid items
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = `.display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_desktop_picture_width} !important;} .mobile-view .display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_mobile_picture_width} !important;}`;
+    document.body.appendChild(css);
   },
 
   willDestroyElement(){
