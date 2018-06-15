@@ -10,12 +10,12 @@ export default Ember.Component.extend({
 
   @on('didInsertElement')
   set_status(){
-
-    if (this.parentView.category && this.parentView.category.user_grid_view == "true"){
+    if (this.parentView.category && this.parentView.category.user_grid_view == true){
       this.set('categoryGridViewEnabled', true);
+      $('body').addClass('display-grid-gallery');
     }
     else {
-      this.set('categoryGridViewEnabled', false); 
+      this.set('categoryGridViewEnabled', false);
     }
     let excludeTags = this.currentUser.exclude_grid_view_tags;
     let tagId = null;
@@ -31,6 +31,13 @@ export default Ember.Component.extend({
         this.set('tagGridViewEnabled', true);
         $('body').addClass('display-grid-gallery');
       }
+
+      //Setting the width and heights of the grid items
+      var css = document.createElement("style");
+      css.type = "text/css";
+      css.innerHTML = `.display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_desktop_picture_width} !important;}`;
+      document.body.appendChild(css);
+
     }
   },
 

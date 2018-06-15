@@ -68,5 +68,20 @@
       padding: 5px;
       display: none;
     }
+
+    .category{
+      display: none;
+    }
+
+    .discourse-tags{
+      display: none;
+    }
+
+    td .pull-left{
+      display: none;
+    }
+  }
+  .grid-view-toggle{
+    margin-bottom: 5px;
   }
 }
