@@ -68,7 +68,7 @@
 
     .topic-details{
       position: absolute;
-      width:100%;
+      width:calc(100% - 10px);
       left:0px;
       padding: 5px;
       display: none;
@@ -95,5 +95,8 @@
     .poster-username{
       padding-right: 5px;
     }
+  }
+  .topic-list-item-separator{
+    display: none;
   }
 }
