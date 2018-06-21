@@ -35,7 +35,7 @@ export default Ember.Component.extend({
     //Setting the width and heights of the grid items
     var css = document.createElement("style");
     css.type = "text/css";
-    css.innerHTML = `.display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_desktop_picture_width}px !important;height:auto !important;} .mobile-view .display-grid-gallery .topic-thumbnail img { width: ${Discourse.SiteSettings.grid_gallery_mobile_picture_width}px !important;;height:auto !important;}`;
+    css.innerHTML = `.display-grid-gallery .topic-thumbnail img, .topic-list-item-separator, .topic-list-item-separator td { width: ${Discourse.SiteSettings.grid_gallery_desktop_picture_width}px !important;height:auto !important;} .mobile-view .display-grid-gallery .topic-thumbnail img, .mobile-view .topic-list-item-separator, .mobile-view .topic-list-item-separator td { width: ${Discourse.SiteSettings.grid_gallery_mobile_picture_width}px !important;height:auto !important;}`;
     document.body.appendChild(css);
   },
 
