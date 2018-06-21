@@ -1,4 +1,10 @@
+.poster-username{
+  display:none;
+}
 .display-grid-gallery{
+  .poster-username{
+    display: inline-block;
+  }
   .topic-list{
     thead{
       display: none;
