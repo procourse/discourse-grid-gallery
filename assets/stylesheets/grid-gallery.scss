@@ -57,7 +57,6 @@
         position: absolute;
         bottom: 0px;
         right: 0px;
-        width: 25px;
         padding: 5px;
         text-align: right;
       }
@@ -89,5 +88,12 @@
   }
   &.tags-page .grid-view-toggle{
     margin-bottom: 5px;
+  }
+  .topic-list .posters>a {
+    float: right;
+    color: #ffffff;
+    .poster-username{
+      padding-right: 5px;
+    }
   }
 }
