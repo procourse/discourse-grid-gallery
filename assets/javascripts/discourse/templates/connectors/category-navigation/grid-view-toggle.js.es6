@@ -9,7 +9,6 @@ export default{
           $('body').removeClass('display-grid-gallery');
         }
       }
-      if (!Discourse.User.current()){return false;};
       return true;
     }
     else{
