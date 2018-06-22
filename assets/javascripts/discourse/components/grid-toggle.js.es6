@@ -17,7 +17,12 @@ export default Ember.Component.extend({
     else {
       this.set('categoryGridViewEnabled', false);
     }
-    let excludeTags = this.currentUser.exclude_grid_view_tags;
+    if (this.currentUser){
+      let excludeTags = this.currentUser.exclude_grid_view_tags;
+    }
+    else {
+      let excludeTags = [];
+    }
     let tagId = null;
     if (this.container.owner.lookup('controller:tags.show').tag) {
       tagId = this.container.owner.lookup('controller:tags.show').tag.id;
