@@ -3,7 +3,7 @@
 }
 .display-grid-gallery{
   .poster-username{
-    display: inline-block;
+    // display: inline-block;
   }
   .topic-list{
     thead{
@@ -113,6 +113,7 @@
     img {
         width:175px !important;
     }
+  }
 }
 .anon .display-grid-gallery{
   .grid-view-toggle{
