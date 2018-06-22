@@ -110,9 +110,8 @@
   .topic-list-item td:first-child, .topic-post {border-left:0px;}
   .topic-list-item:nth-child(6n + 1) .topic-thumbnail{
     margin-right:0px;
-    img {
-        width:175px !important;
-    }
+    width: 174px;
+    overflow: hidden;
   }
 }
 .anon .display-grid-gallery{
