@@ -1,5 +1,5 @@
 .poster-username{
-  display:none;
+  // display:none;
 }
 .display-grid-gallery{
   .poster-username{
@@ -55,8 +55,8 @@
       .posters {
         display: initial;
         position: absolute;
-        bottom: 0px;
-        right: 0px;
+        bottom: 10px;
+        right: 5px;
         padding: 5px;
         text-align: right;
 
